@@ -19,7 +19,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    qint32 idxCurUser;
+    qint32 idxCurUser = -1;
 };
 
 #endif // MAINWINDOW_H

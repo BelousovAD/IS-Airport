@@ -19,7 +19,7 @@ public:
     void edit(QModelIndex index, Ticket user);
 private:
     //! Внутренний контейнер для хранения билетов.
-    QVector<Ticket> mNotes;
+    QVector<Ticket> mTickets;
 };
 
 #endif // TICKETSBOOK_H

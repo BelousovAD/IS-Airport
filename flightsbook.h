@@ -19,7 +19,7 @@ public:
     void edit(QModelIndex index, Flight user);
 private:
     //! Внутренний контейнер для хранения рейсов.
-    QVector<Flight> mNotes;
+    QVector<Flight> mFlights;
 };
 
 #endif // FLIGHTSBOOK_H
