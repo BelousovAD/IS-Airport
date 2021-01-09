@@ -15,6 +15,11 @@ public:
     explicit AuthorisationWindow(QWidget *parent = nullptr);
     ~AuthorisationWindow();
 
+private slots:
+    void on_registrationButton_clicked();
+
+    void on_authorisationButton_clicked();
+
 private:
     Ui::AuthorisationWindow *ui;
 };
