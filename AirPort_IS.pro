@@ -16,6 +16,7 @@ SOURCES += \
     book.cpp \
     buyticketdialog.cpp \
     cashier.cpp \
+    flightsbook.cpp \
     main.cpp \
     mainwindow.cpp \
     menuadminwindow.cpp \
@@ -23,9 +24,11 @@ SOURCES += \
     menuwindow.cpp \
     passenger.cpp \
     registrationwindow.cpp \
+    ticketsbook.cpp \
     ticketslistwindow.cpp \
     ticketwindow.cpp \
-    user.cpp
+    user.cpp \
+    usersbook.cpp
 
 HEADERS += \
     accountwindow.h \
@@ -36,6 +39,7 @@ HEADERS += \
     buyticketdialog.h \
     cashier.h \
     flight.h \
+    flightsbook.h \
     mainwindow.h \
     menuadminwindow.h \
     menucashierwindow.h \
@@ -43,9 +47,11 @@ HEADERS += \
     passenger.h \
     registrationwindow.h \
     ticket.h \
+    ticketsbook.h \
     ticketslistwindow.h \
     ticketwindow.h \
-    user.h
+    user.h \
+    usersbook.h
 
 FORMS += \
     accountwindow.ui \
