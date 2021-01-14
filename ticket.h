@@ -6,10 +6,10 @@
 class Ticket
 {
 public:
-    //! Конструктор по умолчанию
-    Ticket();
     //! Создаёт объект Ticket с параметрами.
-    Ticket(qint32 number, qint32 flightNumber, QString passengerLogin);
+    explicit Ticket(qint32 number = NULL, qint32 flightNumber = NULL, QString passengerLogin = "");
+    //! Деструктор.
+    ~Ticket();
     //! Возвращает номер билета.
     const qint32 &getNumber() const;
     //! Устанавливает номер билета.

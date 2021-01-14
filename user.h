@@ -7,12 +7,12 @@
 class User
 {
 public:
-    //! Конструктор по умолчанию
-    User();
     //! Создаёт объект User с параметрами.
-    User(QString login, QString password, QString surname,
-         QString name, QString midname, qint32 passportSerial,
-         qint32 passportNumber, QDate dateLogin);
+    explicit User(QString login = "", QString password = "", QString surname = "",
+         QString name = "", QString midname = "", qint32 passportSerial = NULL,
+         qint32 passportNumber = NULL, QDate dateLogin = QDate::currentDate());
+    //! Деструктор.
+    ~User();
     //! Возвращает логин пользователя.
     const QString &getLogin() const;
     //! Устанавливает логин пользователя.

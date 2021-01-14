@@ -1,6 +1,10 @@
 #ifndef AUTHORISATIONWINDOW_H
 #define AUTHORISATIONWINDOW_H
 
+#include "flightsbook.h"
+#include "ticketsbook.h"
+#include "usersbook.h"
+
 #include <QWidget>
 
 namespace Ui {
@@ -12,7 +16,9 @@ class AuthorisationWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit AuthorisationWindow(QWidget *parent = nullptr);
+    explicit AuthorisationWindow(QWidget *parent = nullptr, UsersBook *mUsersbook = nullptr,
+                                 FlightsBook *mFlightsbook = nullptr, TicketsBook *mTicketsbook = nullptr,
+                                 User *mCurUser = nullptr);
     ~AuthorisationWindow();
 
 private slots:
@@ -22,6 +28,10 @@ private slots:
 
 private:
     Ui::AuthorisationWindow *ui;
+    UsersBook *mUsersbook;
+    FlightsBook *mFlightsbook;
+    TicketsBook *mTicketsbook;
+    User *mCurUser;
 };
 
 #endif // AUTHORISATIONWINDOW_H
