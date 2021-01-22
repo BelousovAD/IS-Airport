@@ -3,6 +3,10 @@
 
 #include <QDataStream>
 
+#include "user.h"
+#include "flight.h"
+#include "ticket.h"
+
 template<class T>
 class Book
 {
@@ -18,11 +22,11 @@ public:
     //! Загружает книжку из потока ist.
     void load(QDataStream &ist);
     //! Вставляет элемент в книжку.
-    void insert(const T &element);
+    void insert(T &element);
     //! Удаляет запись с индексом idx из книжки.
     void erase(int idx);
     //! Обновляет данные элемента.
-    void edit(int index, T element);
+    void edit(int index, T &element);
 protected:
     QVector<T*> mCollection;
 };
@@ -43,4 +47,7 @@ inline QDataStream &operator>>(QDataStream &ist, Book<T> &book)
     return ist;
 }
 
+template class Book<User>;
+template class Book<Flight>;
+template class Book<Ticket>;
 #endif // BOOK_H

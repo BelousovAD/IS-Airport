@@ -1,5 +1,5 @@
 #include "flightsbook.h"
 
-FlightsBook::FlightsBook()
+FlightsBook::FlightsBook() : Book()
 {
 }

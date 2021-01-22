@@ -1,6 +1,6 @@
 #include "usersbook.h"
 
-UsersBook::UsersBook()
+UsersBook::UsersBook() : Book()
 {
 }
 
