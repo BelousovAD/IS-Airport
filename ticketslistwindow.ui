@@ -35,7 +35,38 @@
     </widget>
    </item>
    <item>
-    <widget class="QTableView" name="ticketsTableView"/>
+    <widget class="QTableWidget" name="ticketsTableWidget">
+     <column>
+      <property name="text">
+       <string>Рейс</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Дата вылета</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Пункт назначения</string>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </column>
+    </widget>
    </item>
   </layout>
  </widget>

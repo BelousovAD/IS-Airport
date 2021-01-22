@@ -16,6 +16,7 @@ SOURCES += \
     book.cpp \
     buyticketdialog.cpp \
     cashier.cpp \
+    flight.cpp \
     flightsbook.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
     menuwindow.cpp \
     passenger.cpp \
     registrationwindow.cpp \
+    ticket.cpp \
     ticketsbook.cpp \
     ticketslistwindow.cpp \
     ticketwindow.cpp \

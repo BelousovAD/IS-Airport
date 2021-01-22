@@ -8,19 +8,21 @@
 class Passenger:public User
 {
 public:
-    //! Создаёт объект Passenger с параметрами.
-    explicit Passenger(QString login, QString password, QString surname,
-          QString name, QString midname, qint32 passportSerial,
-          qint32 passportNumber, QDate dateLogin, QSet<qint32> tickets);
+    //! Конструктор по умолчанию.
+    Passenger();
     //! Деструктор.
     ~Passenger();
     //! Вставляет номер билета в set.
-    void add(qint32 number);
+    void add(int number);
     //! Удаляет номер билета из set.
-    void del(qint32 number);
+    void del(int number);
+    //! Сохраняет пользователя в поток ost.
+    void save(QDataStream &ost) const;
+    //! Загружает пользователя из потока ist.
+    void load(QDataStream &ist);
 private:
     //! Внутренний контейнер для хранения номеров билетов.
-    QSet<qint32> tickets;
+    QSet<int> mTickets;
 };
 
 #endif // PASSENGER_H

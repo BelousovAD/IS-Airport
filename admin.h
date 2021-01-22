@@ -6,10 +6,9 @@
 class Admin:public User
 {
 public:
+    //! Конструктор по умолчанию.
     Admin();
-    Admin(QString login, QString password, QString surname,
-          QString name, QString midname, qint32 passportSerial,
-          qint32 passportNumber, QDate dateLogin);
+    //! Деструктор.
     ~Admin();
 };
 

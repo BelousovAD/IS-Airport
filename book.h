@@ -1,40 +1,43 @@
 #ifndef BOOK_H
 #define BOOK_H
 
-#include <QAbstractTableModel>
+#include <QDataStream>
 
-class Book : public QAbstractTableModel
+template<class T>
+class Book
 {
 public:
     //! Конструктор по умолчанию.
     Book();
     //! Определяет размер коллекции.
     int size() const;
-    //! Определяет количество строк в модели.
-    int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
-    //! Определяет количество столбцов в модели.
-    int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
-    //! Возвращает данные указанной роли для указанного элемента модели.
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
-    //! Возвращает данные указанной роли для указанного заголовка модели.
-    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+    //! Перегрузка оператора.
+    const T &operator[](int idx) const;
     //! Сохраняет книжку в поток ost.
     void save(QDataStream &ost) const;
-    //! Загружает книжку из потока ist. Возвращает количество загруженных заметок.
-    int load(QDataStream &ist);
+    //! Загружает книжку из потока ist.
+    void load(QDataStream &ist);
+    //! Вставляет элемент в книжку.
+    void insert(const T &element);
     //! Удаляет запись с индексом idx из книжки.
     void erase(int idx);
+    //! Обновляет данные элемента.
+    void edit(int index, T element);
+protected:
+    QVector<T*> mCollection;
 };
 
 //! Реализация оператора << для вывода Notebook в QDataStream.
-inline QDataStream &operator<<(QDataStream &ost, const Book &book)
+template<class T>
+inline QDataStream &operator<<(QDataStream &ost, const Book<T> &book)
 {
     book.save(ost);
     return ost;
 }
 
 //! Реализация оператора >> для ввода Notebook из QDataStream.
-inline QDataStream &operator>>(QDataStream &ist, Book &book)
+template<class T>
+inline QDataStream &operator>>(QDataStream &ist, Book<T> &book)
 {
     book.load(ist);
     return ist;

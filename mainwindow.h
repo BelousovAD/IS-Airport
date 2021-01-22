@@ -17,10 +17,13 @@ class MainWindow : public QWidget
 
 public:
     explicit MainWindow(QWidget *parent = nullptr, User *mCurUser = nullptr, UsersBook *mUsersbook = nullptr,
-                        FlightsBook *mFlightbook = nullptr, TicketsBook *mTicketsbook = nullptr);
+                        FlightsBook *mFlightsbook = nullptr, TicketsBook *mTicketsbook = nullptr);
     ~MainWindow();
     void setCurUser(const User &mCurUser);
-    qint32 &getCurUser() const;
+    int &getCurUser() const;
+
+private slots:
+    void on_menuButton_clicked();
 
 private:
     Ui::MainWindow *ui;

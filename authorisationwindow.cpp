@@ -32,13 +32,13 @@ void AuthorisationWindow::on_authorisationButton_clicked()
     //if ()
     for (int i = 0; i < (*mUsersbook).size(); ++i)
     {
-        if ((*mUsersbook).getUser(i).getLogin() == ui->loginLine->text()
-                && (*mUsersbook).getUser(i).getPassword() == ui->passwordLine->text())
+        if ((*mUsersbook)[i].getLogin() == ui->loginLine->text()
+                && (*mUsersbook)[i].getPassword() == ui->passwordLine->text())
         {
-            *mCurUser = (*mUsersbook).getUser(i);
-            MainWindow w(nullptr, mCurUser, mUsersbook, mFlightsbook,mTicketsbook);
+            *mCurUser = (*mUsersbook)[i];
+            MainWindow w(nullptr, mCurUser, mUsersbook, mFlightsbook, mTicketsbook);
             w.show();
-            this->destroy();
+            delete this;
         }
     }
     ui->errorLabel->setText(tr("Пользователь с такими данными не зарегистрирован"));

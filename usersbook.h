@@ -3,23 +3,19 @@
 
 #include "book.h"
 #include "user.h"
+#include "passenger.h"
+#include "admin.h"
+#include "cashier.h"
 
-class UsersBook : public Book
+class UsersBook : public Book<User>
 {
 public:
     //! Конструктор по умолчанию
     UsersBook();
-    //! Перегрузка оператора.
-    const User &operator[](int idx) const;
-    //! Вставляет пользователя в книжку.
-    void insert(const User &user);
-    //! Возвращает пользователя по индексу.
-    const User &getUser(int index) const;
-    //! Обновляет данные пользователя.
-    void edit(QModelIndex index, User user);
-private:
-    //! Внутренний контейнер для хранения пользователей.
-    QVector<User> mNotes;
+    //! Сохраняет книжку в поток ost.
+    void save(QDataStream &ostadmin, QDataStream &ostcashier, QDataStream &ostpassenger) const;
+    //! Загружает книжку из потока ist.
+    void load(QDataStream &istadmin, QDataStream &istcashier, QDataStream &istpassenger);
 };
 
 #endif // USERSBOOK_H

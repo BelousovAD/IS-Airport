@@ -2,5 +2,4 @@
 
 TicketsBook::TicketsBook()
 {
-
 }

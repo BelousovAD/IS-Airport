@@ -1,6 +1,7 @@
 #ifndef FLIGHT_H
 #define FLIGHT_H
 
+#include <QDataStream>
 #include <QString>
 #include <QTime>
 
@@ -9,14 +10,12 @@ class Flight
 public:
     //! Конструктор по умолчанию
     Flight();
-    //! Создаёт объект Flight с параметрами.
-    Flight(qint32 number, QString departurePoint, QString arrivalPoint,
-           QTime departureTime, QTime arrivalTime, QString mark,
-           qint32 numberSeats, QVector<qint32> ticketNumbers);
+    //! Деструктор.
+    ~Flight();
     //! Возвращает номер рейса.
-    const qint32 &getNumber() const;
+    const int &getNumber() const;
     //! Устанавливает номер рейса.
-    void setNumber(const qint32 &number);
+    void setNumber(const int &number);
     //! Возвращает пункт отправления.
     const QString &getDeparturePoint() const;
     //! Устанавливает пункт отправления.
@@ -38,20 +37,20 @@ public:
     //! Устанавливает марка самолёта.
     void setMark(const QString &mark);
     //! Возвращает число мест.
-    const qint32 &getNumberSeats() const;
+    const int &getNumberSeats() const;
     //! Устанавливает число мест.
-    void setNumberSeats(const qint32 &numberSeats);
+    void setNumberSeats(const int &numberSeats);
     //! Возвращает cписок номеров билетов.
-    const qint32 &getTicketNumbers() const;
+    const QVector<int> &getTicketNumbers() const;
     //! Устанавливает cписок номеров билетов.
-    void setTicketNumbers(const qint32 &ticketNumbers);
+    void setTicketNumbers(const QVector<int> &ticketNumbers);
     //! Сохраняет рейс в поток ost.
     void save(QDataStream &ost) const;
     //! Загружает рейс из потока ist.
     void load(QDataStream &ist);
 private:
     //! Номер рейса
-    qint32 mNumber;
+    int mNumber;
     //! Пункт отправления
     QString mDeparturePoint;
     //! Пункт назначения
@@ -63,9 +62,9 @@ private:
     //! Марка самолёта
     QString mMark;
     //! Число мест
-    qint32 mNumberSeats;
+    int mNumberSeats;
     //! Список номеров билетов
-    QVector<qint32> mTicketNumbers;
+    QVector<int> mTicketNumbers;
 };
 
 //! Реализация оператора << для вывода Flight в QDataStream.

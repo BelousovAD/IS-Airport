@@ -1,16 +1,15 @@
 #ifndef USER_H
 #define USER_H
 
+#include <QDataStream>
 #include <QDate>
 #include <QString>
 
 class User
 {
 public:
-    //! Создаёт объект User с параметрами.
-    explicit User(QString login = "", QString password = "", QString surname = "",
-         QString name = "", QString midname = "", qint32 passportSerial = NULL,
-         qint32 passportNumber = NULL, QDate dateLogin = QDate::currentDate());
+    //! Конструктор по умолчанию.
+    User();
     //! Деструктор.
     ~User();
     //! Возвращает логин пользователя.
@@ -20,36 +19,36 @@ public:
     //! Возвращает пароль пользователя.
     const QString &getPassword() const;
     //! Устанавливает пароль пользователя.
-    void setPassword(const QString &text);
+    void setPassword(const QString &password);
     //! Возвращает фамилию пользователя.
     const QString &getSurname() const;
     //! Устанавливает фамилию пользователя.
-    void setSurname(const QString &text);
+    void setSurname(const QString &surname);
     //! Возвращает имя пользователя.
     const QString &getName() const;
     //! Устанавливает имя пользователя.
-    void setName(const QString &text);
+    void setName(const QString &name);
     //! Возвращает отчество пользователя.
     const QString &getMidname() const;
     //! Устанавливает отчество пользователя.
-    void setMidname(const QString &text);
+    void setMidname(const QString &midname);
     //! Возвращает серию паспорта пользователя.
-    const qint32 &getPassportSerial() const;
+    const int &getPassportSerial() const;
     //! Устанавливает серию паспорта пользователя.
-    void setPassportSerial(const qint32 &passportSerial);
+    void setPassportSerial(const int &passportSerial);
     //! Возвращает номер паспорта пользователя.
-    const qint32 &getPassportNumber() const;
+    const int &getPassportNumber() const;
     //! Устанавливает номер паспорта пользователя.
-    void setPassportNumber(const qint32 &passportSerial);
+    void setPassportNumber(const int &passportSerial);
     //! Возвращает дату последнего входа пользователя.
     const QDate &getDateLogin() const;
     //! Устанавливает дату последнего входа пользователя.
     void setDateLogin(const QDate &dateLogin);
     //! Сохраняет пользователя в поток ost.
-    void save(QDataStream &ost) const;
+    virtual void save(QDataStream &ost) const;
     //! Загружает пользователя из потока ist.
-    void load(QDataStream &ist);
-private:
+    virtual void load(QDataStream &ist);
+protected:
     //! Логин пользователя
     QString mLogin;
     //! Пароль пользователя
@@ -61,11 +60,11 @@ private:
     //! Отчество пользователя
     QString mMidname;
     //! Серия паспорта пользователя
-    qint32 mPassportSerial;
+    int mPassportSerial;
     //! Номер паспорта пользователя
-    qint32 mPassportNumber;
+    int mPassportNumber;
     //! Дата последнего входа пользователя
-    QDate mDateLogin;
+    QDate mDateLogin = QDate::currentDate();
 };
 
 //! Реализация оператора << для вывода User в QDataStream.

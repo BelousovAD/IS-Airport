@@ -2,5 +2,4 @@
 
 FlightsBook::FlightsBook()
 {
-
 }
