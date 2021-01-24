@@ -20,6 +20,9 @@ public:
                         FlightsBook *mFlightsbook = nullptr, TicketsBook *mTicketsbook = nullptr);
     ~MenuDialog();
 
+private slots:
+    void on_accountButton_clicked();
+
 private:
     Ui::MenuDialog *ui;
     UsersBook *mUsersbook;

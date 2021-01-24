@@ -16,8 +16,7 @@ class AuthorisationDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit AuthorisationDialog(QWidget *parent = nullptr, UsersBook *mUsersbook = nullptr,
-                                 FlightsBook *mFlightsbook = nullptr, TicketsBook *mTicketsbook = nullptr);
+    explicit AuthorisationDialog(QWidget *parent = nullptr);
     ~AuthorisationDialog();
 
 private slots:

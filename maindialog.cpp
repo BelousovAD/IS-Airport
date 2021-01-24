@@ -1,5 +1,8 @@
 #include "maindialog.h"
 #include "ui_maindialog.h"
+#include "addflightdialog.h"
+#include "menucashierdialog.h"
+#include "menudialog.h"
 
 MainDialog::MainDialog(QWidget *parent, UsersBook *mUsersbook,
                        FlightsBook *mFlightsbook, TicketsBook *mTicketsbook,
@@ -50,6 +53,8 @@ MainDialog::~MainDialog()
 
 void MainDialog::on_menuButton_clicked()
 {
-
+    MenuDialog menudialog(this, mCurUser, mUsersbook, mFlightsbook, mTicketsbook);
+    menudialog.setModal(true);
+    menudialog.exec();
 }
 
