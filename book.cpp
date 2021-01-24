@@ -12,9 +12,9 @@ int Book<T>::size() const
 }
 
 template<class T>
-const T &Book<T>::operator[](int idx) const
+T* Book<T>::operator[](int idx) const
 {
-    return *(mCollection[idx]);
+    return mCollection[idx];
 }
 
 template<class T>
@@ -41,16 +41,16 @@ void Book<T>::load(QDataStream &ist)
     // Пока в потоке есть данные
     while (!ist.atEnd())
     {
-        T n;
+        T* n = new T;
         // Читаем очередной элемент из потока
-        ist >> n;
+        ist >> *n;
         // Если возникла ошибка, запускаем исключительную ситуацию
         if (ist.status() == QDataStream::ReadCorruptData)
         {
             throw std::runtime_error("Corrupt data were read from the stream");
         }
         // Вставляем прочитанный элемент в конец вектора.
-        mCollection.push_back(&n);
+        mCollection.push_back(n);
     }
 }
 

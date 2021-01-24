@@ -49,41 +49,41 @@ void UsersBook::load(QDataStream &istadmin, QDataStream &istcashier, QDataStream
     // Пока в потоке есть данные
     while (!istadmin.atEnd())
     {
-        Admin n;
+        Admin* n = new Admin;
         // Читаем очередной элемент из потока
-        istadmin >> n;
+        istadmin >> *n;
         // Если возникла ошибка, запускаем исключительную ситуацию
         if (istadmin.status() == QDataStream::ReadCorruptData)
         {
             throw std::runtime_error("Corrupt data were read from the stream");
         }
         // Вставляем прочитанный элемент в конец вектора.
-        mCollection.push_back(&n);
+        mCollection.push_back(n);
     }
     while (!istcashier.atEnd())
     {
-        Cashier n;
+        Cashier* n = new Cashier;
         // Читаем очередной элемент из потока
-        istcashier >> n;
+        istcashier >> *n;
         // Если возникла ошибка, запускаем исключительную ситуацию
         if (istcashier.status() == QDataStream::ReadCorruptData)
         {
             throw std::runtime_error("Corrupt data were read from the stream");
         }
         // Вставляем прочитанный элемент в конец вектора.
-        mCollection.push_back(&n);
+        mCollection.push_back(n);
     }
     while (!istpassenger.atEnd())
     {
-        Passenger n;
+        Passenger* n = new Passenger;
         // Читаем очередной элемент из потока
-        istpassenger >> n;
+        istpassenger >> *n;
         // Если возникла ошибка, запускаем исключительную ситуацию
         if (istpassenger.status() == QDataStream::ReadCorruptData)
         {
             throw std::runtime_error("Corrupt data were read from the stream");
         }
         // Вставляем прочитанный элемент в конец вектора.
-        mCollection.push_back(&n);
+        mCollection.push_back(n);
     }
 }

@@ -16,7 +16,7 @@ public:
     //! Определяет размер коллекции.
     int size() const;
     //! Перегрузка оператора.
-    const T &operator[](int idx) const;
+    T* operator[](int idx) const;
     //! Сохраняет книжку в поток ost.
     void save(QDataStream &ost) const;
     //! Загружает книжку из потока ist.

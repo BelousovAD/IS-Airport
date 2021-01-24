@@ -1,7 +1,6 @@
-#include "authorisationwindow.h"
+#include "authorisationdialog.h"
 
 #include <QApplication>
-#include <QSaveFile>
 #include <QFile>
 
 int main(int argc, char *argv[])
@@ -20,22 +19,13 @@ int main(int argc, char *argv[])
         Admin firstAdmin;
         firstAdmin.setLogin("admin");
         firstAdmin.setPassword("12345");
-        /*
-         * Создаём объект outf, связанный с файлом fileName.
-         * QSaveFile обеспечивает безопасное сохранение (через промежуточный
-         * временный файл), чтобы избежать потери данных в случае нештатного
-         * завершения операции сохранения. Само сохранение происходит при вызове
-         * метода commit().
-         */
-        QSaveFile outf("admins.bin");
         // Открываем файл только для записи
-        outf.open(QIODevice::WriteOnly);
+        fileAdmins.open(QIODevice::Append);
         // Привязываем к файлу поток, позволяющий выводить объекты Qt
-        QDataStream ost(&outf);
+        QDataStream ost(&fileAdmins);
         // Выводим первого администратора в файл
         ost << firstAdmin;
-        // Запускаем сохранение
-        outf.commit();
+        fileAdmins.close();
     }
     // Открываем файлы только для чтения
     fileAdmins.open(QIODevice::ReadOnly);
@@ -53,7 +43,7 @@ int main(int argc, char *argv[])
     usersbook.load(istadmin, istcashier, istpassenger);
     istflight >> flightsbook;
     istticket >> ticketsbook;
-    AuthorisationWindow w(nullptr, &usersbook, &flightsbook, &ticketsbook);
-    w.show();
+    AuthorisationDialog window(nullptr, &usersbook, &flightsbook, &ticketsbook);
+    window.show();
     return a.exec();
 }
