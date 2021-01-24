@@ -1,6 +1,7 @@
 #include "menudialog.h"
 #include "ui_menudialog.h"
 #include "accountdialog.h"
+#include "ticketslistdialog.h"
 
 MenuDialog::MenuDialog(QWidget *parent, User *mCurUser, UsersBook *mUsersbook,
                        FlightsBook *mFlightsbook, TicketsBook *mTicketsbook) :
@@ -12,6 +13,14 @@ MenuDialog::MenuDialog(QWidget *parent, User *mCurUser, UsersBook *mUsersbook,
     this->mUsersbook = mUsersbook;
     this->mFlightsbook = mFlightsbook;
     this->mTicketsbook = mTicketsbook;
+    if (dynamic_cast<Admin*>(mCurUser) == nullptr)
+    {
+        ui->adminButton->hide();
+    }
+    if (dynamic_cast<Passenger*>(mCurUser) == nullptr)
+    {
+        ui->ticketsButton->hide();
+    }
 }
 
 MenuDialog::~MenuDialog()
@@ -25,5 +34,14 @@ void MenuDialog::on_accountButton_clicked()
     accountdialog.setModal(true);
     this->hide();
     accountdialog.exec();
+    this->show();
+}
+
+void MenuDialog::on_ticketsButton_clicked()
+{
+    TicketsListDialog ticketslistdialog(this, mCurUser, mFlightsbook, mTicketsbook);
+    ticketslistdialog.setModal(true);
+    this->hide();
+    ticketslistdialog.exec();
     this->show();
 }

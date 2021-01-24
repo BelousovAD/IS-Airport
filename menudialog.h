@@ -23,6 +23,8 @@ public:
 private slots:
     void on_accountButton_clicked();
 
+    void on_ticketsButton_clicked();
+
 private:
     Ui::MenuDialog *ui;
     UsersBook *mUsersbook;

@@ -22,14 +22,15 @@ MainDialog::MainDialog(QWidget *parent, UsersBook *mUsersbook,
         ui->delButton->hide();
         ui->editButton->hide();
     }
+    // Конструирование таблицы
     for (int i = 0; i < (*mFlightsbook).size(); ++i)
     {
         Flight flight = *(*mFlightsbook)[i];
         QTableWidgetItem *item_number = new QTableWidgetItem(flight.getNumber());
         QTableWidgetItem *item_departurePoint = new QTableWidgetItem(flight.getDeparturePoint());
         QTableWidgetItem *item_arrivalPoint = new QTableWidgetItem(flight.getArrivalPoint());
-        QTableWidgetItem *item_departureTime = new QTableWidgetItem(flight.getDepartureTime().toString());
-        QTableWidgetItem *item_arrivalTime = new QTableWidgetItem(flight.getArrivalTime().toString());
+        QTableWidgetItem *item_departureTime = new QTableWidgetItem(flight.getDepartureDateTime().time().toString());
+        QTableWidgetItem *item_arrivalTime = new QTableWidgetItem(flight.getArrivalDateTime().time().toString());
         QTableWidgetItem *item_mark = new QTableWidgetItem(flight.getMark());
         QTableWidgetItem *item_numberSeats = new QTableWidgetItem(flight.getNumberSeats());
         QTableWidgetItem *item_numberFreeSeats = new QTableWidgetItem(flight.getNumberSeats() - flight.getTicketNumbers().size());
