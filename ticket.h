@@ -1,23 +1,24 @@
 #ifndef TICKET_H
 #define TICKET_H
 
+#include <QDataStream>
 #include <QString>
 
 class Ticket
 {
 public:
-    //! Конструктор по умолчанию
+    //! Конструктор по умолчанию.
     Ticket();
-    //! Создаёт объект Ticket с параметрами.
-    Ticket(qint32 number, qint32 flightNumber, QString passengerLogin);
+    //! Деструктор.
+    ~Ticket();
     //! Возвращает номер билета.
-    const qint32 &getNumber() const;
+    const int &getNumber() const;
     //! Устанавливает номер билета.
-    void setNumber(const QString &number);
+    void setNumber(const int &number);
     //! Возвращает номер рейса.
-    const QString &getFlightNumber() const;
+    const int &getFlightNumber() const;
     //! Устанавливает номер рейса.
-    void setFlightNumber(const QString &flightNumber);
+    void setFlightNumber(const int &flightNumber);
     //! Возвращает логин пассажира.
     const QString &getPassengerLogin() const;
     //! Устанавливает логин пассажира.
@@ -28,9 +29,9 @@ public:
     void load(QDataStream &ist);
 private:
     //! Номер билета
-    qint32 mNumber;
+    int mNumber;
     //! Номер рейса
-    qint32 mFlightNumber;
+    int mFlightNumber;
     //! Логин пассажира
     QString mPassengerLogin;
 };

@@ -6,10 +6,9 @@
 class Cashier:public User
 {
 public:
+    //! Конструктор по умолчанию.
     Cashier();
-    Cashier(QString login, QString password, QString surname,
-          QString name, QString midname, qint32 passportSerial,
-          qint32 passportNumber, QDate dateLogin);
+    //! Деструктор.
     ~Cashier();
 };
 

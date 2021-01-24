@@ -4,7 +4,7 @@
 #include "book.h"
 #include "flight.h"
 
-class FlightsBook : public Book
+class FlightsBook : public Book<Flight>
 {
 public:
     //! Конструктор по умолчанию

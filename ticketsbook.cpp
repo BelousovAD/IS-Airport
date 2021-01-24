@@ -1,6 +1,5 @@
 #include "ticketsbook.h"
 
-TicketsBook::TicketsBook()
+TicketsBook::TicketsBook() : Book()
 {
-
 }

@@ -9,62 +9,64 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    accountwindow.cpp \
+    accountdialog.cpp \
     addflightdialog.cpp \
     admin.cpp \
-    authorisationwindow.cpp \
+    authorisationdialog.cpp \
     book.cpp \
     buyticketdialog.cpp \
     cashier.cpp \
+    flight.cpp \
     flightsbook.cpp \
     main.cpp \
-    mainwindow.cpp \
-    menuadminwindow.cpp \
-    menucashierwindow.cpp \
-    menuwindow.cpp \
+    maindialog.cpp \
+    menuadmindialog.cpp \
+    menucashierdialog.cpp \
+    menudialog.cpp \
     passenger.cpp \
-    registrationwindow.cpp \
+    registrationdialog.cpp \
+    ticket.cpp \
+    ticketdialog.cpp \
     ticketsbook.cpp \
-    ticketslistwindow.cpp \
-    ticketwindow.cpp \
+    ticketslistdialog.cpp \
     user.cpp \
     usersbook.cpp
 
 HEADERS += \
-    accountwindow.h \
+    accountdialog.h \
     addflightdialog.h \
     admin.h \
-    authorisationwindow.h \
+    authorisationdialog.h \
     book.h \
     buyticketdialog.h \
     cashier.h \
     flight.h \
     flightsbook.h \
-    mainwindow.h \
-    menuadminwindow.h \
-    menucashierwindow.h \
-    menuwindow.h \
+    maindialog.h \
+    menuadmindialog.h \
+    menucashierdialog.h \
+    menudialog.h \
     passenger.h \
-    registrationwindow.h \
+    registrationdialog.h \
     ticket.h \
+    ticketdialog.h \
     ticketsbook.h \
-    ticketslistwindow.h \
-    ticketwindow.h \
+    ticketslistdialog.h \
     user.h \
     usersbook.h
 
 FORMS += \
-    accountwindow.ui \
+    accountdialog.ui \
     addflightdialog.ui \
-    authorisationwindow.ui \
+    authorisationdialog.ui \
     buyticketdialog.ui \
-    mainwindow.ui \
-    menuadminwindow.ui \
-    menucashierwindow.ui \
-    menuwindow.ui \
-    registrationwindow.ui \
-    ticketslistwindow.ui \
-    ticketwindow.ui
+    maindialog.ui \
+    menuadmindialog.ui \
+    menucashierdialog.ui \
+    menudialog.ui \
+    registrationdialog.ui \
+    ticketdialog.ui \
+    ticketslistdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

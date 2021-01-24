@@ -1,12 +1,11 @@
-#include "authorisationwindow.h"
+#include "authorisationdialog.h"
 
 #include <QApplication>
-#include <QFile>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    AuthorisationWindow w;
-    w.show();
+    AuthorisationDialog window;
+    window.show();
     return a.exec();
 }
