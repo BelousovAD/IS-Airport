@@ -46,6 +46,5 @@ void TicketsListDialog::on_ticketsTableWidget_cellActivated(int row, int column)
     Ticket *ticket = (*mTicketsbook)[tickets[row].first];
     Flight *flight = (*mFlightsbook)[tickets[row].second];
     TicketDialog ticketdialog(this, ticket, flight, mCurUser);
-    ticketdialog.setModal(true);
     ticketdialog.exec();
 }

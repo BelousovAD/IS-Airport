@@ -1,5 +1,6 @@
 #include "menudialog.h"
 #include "ui_menudialog.h"
+#include "menuadmindialog.h"
 #include "accountdialog.h"
 #include "ticketslistdialog.h"
 
@@ -31,7 +32,6 @@ MenuDialog::~MenuDialog()
 void MenuDialog::on_accountButton_clicked()
 {
     AccountDialog accountdialog(this, mCurUser, mUsersbook);
-    accountdialog.setModal(true);
     this->hide();
     accountdialog.exec();
     this->show();
@@ -40,8 +40,15 @@ void MenuDialog::on_accountButton_clicked()
 void MenuDialog::on_ticketsButton_clicked()
 {
     TicketsListDialog ticketslistdialog(this, mCurUser, mFlightsbook, mTicketsbook);
-    ticketslistdialog.setModal(true);
     this->hide();
     ticketslistdialog.exec();
+    this->show();
+}
+
+void MenuDialog::on_adminButton_clicked()
+{
+    MenuAdminDialog menuadmindialog(this, mCurUser, mUsersbook);
+    this->hide();
+    menuadmindialog.exec();
     this->show();
 }

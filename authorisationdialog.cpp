@@ -96,7 +96,6 @@ AuthorisationDialog::~AuthorisationDialog()
 void AuthorisationDialog::on_registrationButton_clicked()
 {
     RegistrationDialog signUpDialog(this, mUsersbook);
-    signUpDialog.setModal(true);
     this->hide();
     signUpDialog.exec();
     this->show();
@@ -121,3 +120,4 @@ void AuthorisationDialog::on_authorisationButton_clicked()
     }
     ui->errorLabel->setText(tr("Пользователь с такими данными не зарегистрирован"));
 }
+

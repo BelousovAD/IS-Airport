@@ -55,7 +55,6 @@ MainDialog::~MainDialog()
 void MainDialog::on_menuButton_clicked()
 {
     MenuDialog menudialog(this, mCurUser, mUsersbook, mFlightsbook, mTicketsbook);
-    menudialog.setModal(true);
     menudialog.exec();
 }
 
