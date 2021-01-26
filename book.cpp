@@ -24,7 +24,7 @@ void Book<T>::save(QDataStream &ost) const
     for (const T *n : mCollection)
     {
         // Выводим элемент в поток
-        ost << n;
+        ost << *n;
         // Если возникла ошибка, запускаем исключительную ситуацию
         if (ost.status() == QDataStream::WriteFailed)
         {

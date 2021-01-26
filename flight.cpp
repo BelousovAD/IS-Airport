@@ -38,24 +38,24 @@ void Flight::setArrivalPoint(const QString &arrivalPoint)
     mArrivalPoint = arrivalPoint;
 }
 
-const QDateTime &Flight::getDepartureDateTime() const
+const QTime &Flight::getDepartureTime() const
 {
-    return mDepartureDateTime;
+    return mDepartureTime;
 }
 
-void Flight::setDepartureDateTime(const QDateTime &departureDateTime)
+void Flight::setDepartureTime(const QTime &departureTime)
 {
-    mDepartureDateTime = departureDateTime;
+    mDepartureTime = departureTime;
 }
 
-const QDateTime &Flight::getArrivalDateTime() const
+const QTime &Flight::getArrivalTime() const
 {
-    return mArrivalDateTime;
+    return mArrivalTime;
 }
 
-void Flight::setArrivalDateTime(const QDateTime &arrivalDateTime)
+void Flight::setArrivalTime(const QTime &arrivalTime)
 {
-    mArrivalDateTime = arrivalDateTime;
+    mArrivalTime = arrivalTime;
 }
 
 const QString &Flight::getMark() const
@@ -91,13 +91,13 @@ void Flight::setTicketNumbers(const QVector<int> &ticketNumbers)
 void Flight::save(QDataStream &ost) const
 {
     ost << mNumber << mDeparturePoint << mArrivalPoint
-        << mDepartureDateTime << mArrivalDateTime << mMark
+        << mDepartureTime << mArrivalTime << mMark
         << mNumberSeats << mTicketNumbers;
 }
 
 void Flight::load(QDataStream &ist)
 {
     ist >> mNumber >> mDeparturePoint >> mArrivalPoint
-        >> mDepartureDateTime >> mArrivalDateTime >> mMark
+        >> mDepartureTime >> mArrivalTime >> mMark
         >> mNumberSeats >> mTicketNumbers;
 }

@@ -42,8 +42,8 @@ AuthorisationDialog::AuthorisationDialog(QWidget *parent) :
     QDataStream istticket(&fileTickets);
     // Загружаем данные из файлов
     mUsersbook->load(istadmin, istcashier, istpassenger);
-    istflight >> *mFlightsbook;
-    istticket >> *mTicketsbook;
+    mFlightsbook->load(istflight);
+    mTicketsbook->load(istticket);
     // Закрываем файлы
     fileAdmins.close();
     fileCashiers.close();
@@ -80,8 +80,8 @@ AuthorisationDialog::~AuthorisationDialog()
     QDataStream ostticket(&fileTickets);
     // Загружаем данные в файлы
     mUsersbook->save(ostadmin, ostcashier, ostpassenger);
-    ostflight << *mFlightsbook;
-    ostticket << *mTicketsbook;
+    mFlightsbook->save(ostflight);
+    mTicketsbook->save(ostticket);
     // Закрываем файлы
     fileAdmins.close();
     fileCashiers.close();

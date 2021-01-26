@@ -28,6 +28,16 @@ public:
 private slots:
     void on_menuButton_clicked();
 
+    void on_addButton_clicked();
+
+    void addFlightToTable();
+
+    void editFlightAtTable();
+
+    void on_delButton_clicked();
+
+    void on_editButton_clicked();
+
 private:
     Ui::MainDialog *ui;
     User *mCurUser;

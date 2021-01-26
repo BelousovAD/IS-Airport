@@ -2,6 +2,7 @@
 #define TICKET_H
 
 #include <QDataStream>
+#include <QDate>
 #include <QString>
 
 class Ticket
@@ -23,6 +24,14 @@ public:
     const QString &getPassengerLogin() const;
     //! Устанавливает логин пассажира.
     void setPassengerLogin(const QString &passengerLogin);
+    //! Возвращает дату вылета.
+    const QDate &getDepartureDate() const;
+    //! Устанавливает дату вылета.
+    void setDepartureDate(const QDate &departureDate);
+    //! Возвращает дату прибытия.
+    const QDate &getArrivalDate() const;
+    //! Устанавливает дату прибытия.
+    void setArrivalDate(const QDate &arrivalDate);
     //! Сохраняет билет в поток ost.
     void save(QDataStream &ost) const;
     //! Загружает билет из потока ist.
@@ -34,6 +43,10 @@ private:
     int mFlightNumber;
     //! Логин пассажира
     QString mPassengerLogin;
+    //! Дата вылета.
+    QDate mDepartureDate;
+    //! Дата прибытия.
+    QDate mArrivalDate;
 };
 
 //! Реализация оператора << для вывода Ticket в QDataStream.
