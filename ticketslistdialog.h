@@ -4,6 +4,8 @@
 #include "flightsbook.h"
 #include "ticketsbook.h"
 
+#include "ticketdialog.h"
+
 #include <QDialog>
 
 namespace Ui {
@@ -27,6 +29,7 @@ private:
     User *mCurUser;
     FlightsBook *mFlightsbook;
     TicketsBook *mTicketsbook;
+    TicketDialog *mTicketDialog;
     QVector<QPair<int, int>> tickets;
 };
 

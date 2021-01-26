@@ -1,6 +1,5 @@
 #include "menuadmindialog.h"
 #include "ui_menuadmindialog.h"
-#include "registrationdialog.h"
 
 #include <QMessageBox>
 
@@ -42,17 +41,9 @@ MenuAdminDialog::~MenuAdminDialog()
 
 void MenuAdminDialog::on_addButton_clicked()
 {
-    RegistrationDialog registrationdialog(this, mUsersbook);
-    if (registrationdialog.exec() == QDialog::Accepted)
-    {
-        int row = ui->usersTableWidget->rowCount();
-        User *user = (*mUsersbook)[row];
-        QTableWidgetItem *item_login = new QTableWidgetItem(user->getLogin());
-        QTableWidgetItem *item_root = new QTableWidgetItem("Пассажир");
-        ui->usersTableWidget->insertRow(row);
-        ui->usersTableWidget->setItem(row, 0, item_login);
-        ui->usersTableWidget->setItem(row, 1, item_root);
-    }
+    mRegistrationDialog = new RegistrationDialog(this, mUsersbook);
+    connect(mRegistrationDialog, SIGNAL(accepted()), this, SLOT(addUserToTable()));
+    mRegistrationDialog->open();
 }
 
 void MenuAdminDialog::on_delButton_clicked()
@@ -78,7 +69,7 @@ void MenuAdminDialog::on_riseButton_clicked()
         }
         else if (dynamic_cast<Cashier*>(user))
         {
-            int row = ui->usersTableWidget->rowCount();
+            //int row = ui->usersTableWidget->rowCount();
             Admin *admin = new Admin;
             admin->setDateLogin(user->getDateLogin());
             admin->setLogin(user->getLogin());
@@ -93,14 +84,14 @@ void MenuAdminDialog::on_riseButton_clicked()
             ui->usersTableWidget->removeRow(currentRow);
             QTableWidgetItem *item_login = new QTableWidgetItem(admin->getLogin());
             QTableWidgetItem *item_root = new QTableWidgetItem("Администратор");
-            ui->usersTableWidget->insertRow(row);
-            ui->usersTableWidget->setItem(row, 0, item_login);
-            ui->usersTableWidget->setItem(row, 1, item_root);
+            ui->usersTableWidget->insertRow(currentRow);
+            ui->usersTableWidget->setItem(currentRow, 0, item_login);
+            ui->usersTableWidget->setItem(currentRow, 1, item_root);
 
         }
         else if (dynamic_cast<Passenger*>(user))
         {
-            int row = ui->usersTableWidget->rowCount();
+            //int row = ui->usersTableWidget->rowCount();
             Cashier *cashier = new Cashier;
             cashier->setDateLogin(user->getDateLogin());
             cashier->setLogin(user->getLogin());
@@ -115,9 +106,78 @@ void MenuAdminDialog::on_riseButton_clicked()
             ui->usersTableWidget->removeRow(currentRow);
             QTableWidgetItem *item_login = new QTableWidgetItem(cashier->getLogin());
             QTableWidgetItem *item_root = new QTableWidgetItem("Кассир");
-            ui->usersTableWidget->insertRow(row);
-            ui->usersTableWidget->setItem(row, 0, item_login);
-            ui->usersTableWidget->setItem(row, 1, item_root);
+            ui->usersTableWidget->insertRow(currentRow);
+            ui->usersTableWidget->setItem(currentRow, 0, item_login);
+            ui->usersTableWidget->setItem(currentRow, 1, item_root);
+        }
+    }
+    else {
+        QMessageBox::warning(this, windowTitle(), "Не выбран ни один пользователь");
+    }
+}
+
+void MenuAdminDialog::addUserToTable()
+{
+    int row = ui->usersTableWidget->rowCount();
+    User *user = (*mUsersbook)[row];
+    QTableWidgetItem *item_login = new QTableWidgetItem(user->getLogin());
+    QTableWidgetItem *item_root = new QTableWidgetItem("Пассажир");
+    ui->usersTableWidget->insertRow(row);
+    ui->usersTableWidget->setItem(row, 0, item_login);
+    ui->usersTableWidget->setItem(row, 1, item_root);
+}
+
+void MenuAdminDialog::on_lowerButton_clicked()
+{
+    int currentRow = ui->usersTableWidget->currentRow();
+    User *user = (*mUsersbook)[currentRow];
+    if (currentRow != -1) {
+        if (dynamic_cast<Passenger*>(user) != nullptr)
+        {
+            QMessageBox::warning(this, windowTitle(), "Невозможно понизить пользователя");
+        }
+        else if (dynamic_cast<Cashier*>(user))
+        {
+            //int row = ui->usersTableWidget->rowCount();
+            Passenger *passenger = new Passenger;
+            passenger->setDateLogin(user->getDateLogin());
+            passenger->setLogin(user->getLogin());
+            passenger->setMidname(user->getMidname());
+            passenger->setName(user->getName());
+            passenger->setPassportNumber(user->getPassportNumber());
+            passenger->setPassportSerial(user->getPassportSerial());
+            passenger->setPassword(user->getPassword());
+            passenger->setSurname(user->getSurname());
+            (*mUsersbook).insert(*passenger);
+            (*mUsersbook).erase(currentRow);
+            ui->usersTableWidget->removeRow(currentRow);
+            QTableWidgetItem *item_login = new QTableWidgetItem(passenger->getLogin());
+            QTableWidgetItem *item_root = new QTableWidgetItem("Пассажир");
+            ui->usersTableWidget->insertRow(currentRow);
+            ui->usersTableWidget->setItem(currentRow, 0, item_login);
+            ui->usersTableWidget->setItem(currentRow, 1, item_root);
+
+        }
+        else if (dynamic_cast<Admin*>(user))
+        {
+            //int row = ui->usersTableWidget->rowCount();
+            Cashier *cashier = new Cashier;
+            cashier->setDateLogin(user->getDateLogin());
+            cashier->setLogin(user->getLogin());
+            cashier->setMidname(user->getMidname());
+            cashier->setName(user->getName());
+            cashier->setPassportNumber(user->getPassportNumber());
+            cashier->setPassportSerial(user->getPassportSerial());
+            cashier->setPassword(user->getPassword());
+            cashier->setSurname(user->getSurname());
+            (*mUsersbook).insert(*cashier);
+            (*mUsersbook).erase(currentRow);
+            ui->usersTableWidget->removeRow(currentRow);
+            QTableWidgetItem *item_login = new QTableWidgetItem(cashier->getLogin());
+            QTableWidgetItem *item_root = new QTableWidgetItem("Кассир");
+            ui->usersTableWidget->insertRow(currentRow);
+            ui->usersTableWidget->setItem(currentRow, 0, item_login);
+            ui->usersTableWidget->setItem(currentRow, 1, item_root);
         }
     }
     else {

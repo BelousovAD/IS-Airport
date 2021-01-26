@@ -1,8 +1,5 @@
 #include "menudialog.h"
 #include "ui_menudialog.h"
-#include "menuadmindialog.h"
-#include "accountdialog.h"
-#include "ticketslistdialog.h"
 
 MenuDialog::MenuDialog(QWidget *parent, User *mCurUser, UsersBook *mUsersbook,
                        FlightsBook *mFlightsbook, TicketsBook *mTicketsbook) :
@@ -31,24 +28,30 @@ MenuDialog::~MenuDialog()
 
 void MenuDialog::on_accountButton_clicked()
 {
-    AccountDialog accountdialog(this, mCurUser, mUsersbook);
+    mAccountDialog = new AccountDialog(this, mCurUser, mUsersbook);
     this->hide();
-    accountdialog.exec();
-    this->show();
+    connect(mAccountDialog, SIGNAL(accepted()), this, SLOT(slotShow()));
+    connect(mAccountDialog, SIGNAL(rejected()), this, SLOT(slotShow()));
+    mAccountDialog->open();
 }
 
 void MenuDialog::on_ticketsButton_clicked()
 {
-    TicketsListDialog ticketslistdialog(this, mCurUser, mFlightsbook, mTicketsbook);
+    mTicketsListDialog = new TicketsListDialog(this, mCurUser, mFlightsbook, mTicketsbook);
     this->hide();
-    ticketslistdialog.exec();
-    this->show();
+    connect(mTicketsListDialog, SIGNAL(rejected()), this, SLOT(slotShow()));
+    mTicketsListDialog->open();
 }
 
 void MenuDialog::on_adminButton_clicked()
 {
-    MenuAdminDialog menuadmindialog(this, mCurUser, mUsersbook);
+    mMenuAdminDialog = new MenuAdminDialog(this, mCurUser, mUsersbook);
     this->hide();
-    menuadmindialog.exec();
+    connect(mMenuAdminDialog, SIGNAL(rejected()), this, SLOT(slotShow()));
+    mMenuAdminDialog->open();
+}
+
+void MenuDialog::slotShow()
+{
     this->show();
 }

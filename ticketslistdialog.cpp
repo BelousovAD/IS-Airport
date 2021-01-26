@@ -1,6 +1,5 @@
 #include "ticketslistdialog.h"
 #include "ui_ticketslistdialog.h"
-#include "ticketdialog.h"
 
 TicketsListDialog::TicketsListDialog(QWidget *parent, User *mCurUser,
                                      FlightsBook *mFlightbook, TicketsBook *mTicketsbook) :
@@ -45,6 +44,6 @@ void TicketsListDialog::on_ticketsTableWidget_cellActivated(int row, int column)
     Q_UNUSED(column);
     Ticket *ticket = (*mTicketsbook)[tickets[row].first];
     Flight *flight = (*mFlightsbook)[tickets[row].second];
-    TicketDialog ticketdialog(this, ticket, flight, mCurUser);
-    ticketdialog.exec();
+    mTicketDialog = new TicketDialog(this, ticket, flight, mCurUser);
+    mTicketDialog->open();
 }

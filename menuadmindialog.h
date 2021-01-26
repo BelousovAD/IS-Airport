@@ -3,6 +3,8 @@
 
 #include "usersbook.h"
 
+#include "registrationdialog.h"
+
 #include <QDialog>
 
 namespace Ui {
@@ -24,10 +26,15 @@ private slots:
 
     void on_riseButton_clicked();
 
+    void addUserToTable();
+
+    void on_lowerButton_clicked();
+
 private:
     Ui::MenuAdminDialog *ui;
     User *mCurUser;
     UsersBook *mUsersbook;
+    RegistrationDialog *mRegistrationDialog;
 };
 
 #endif // MENUADMINDIALOG_H
