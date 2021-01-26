@@ -5,6 +5,10 @@
 #include "ticketsbook.h"
 #include "usersbook.h"
 
+#include "accountdialog.h"
+#include "menuadmindialog.h"
+#include "ticketslistdialog.h"
+
 #include <QDialog>
 
 namespace Ui {
@@ -23,12 +27,21 @@ public:
 private slots:
     void on_accountButton_clicked();
 
+    void on_ticketsButton_clicked();
+
+    void on_adminButton_clicked();
+
+    void slotShow();
+
 private:
     Ui::MenuDialog *ui;
     UsersBook *mUsersbook;
     FlightsBook *mFlightsbook;
     TicketsBook *mTicketsbook;
     User *mCurUser;
+    AccountDialog *mAccountDialog;
+    MenuAdminDialog *mMenuAdminDialog;
+    TicketsListDialog *mTicketsListDialog;
 };
 
 #endif // MENUDIALOG_H

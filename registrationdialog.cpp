@@ -36,13 +36,11 @@ void RegistrationDialog::on_registrationButton_clicked()
         }
     }
     (*mUsersbook).insert(*user);
-    QMessageBox successful;
-    successful.setText(tr("Пользователь успешно зарегистрирован"));
-    successful.exec();
+    QMessageBox::warning(this, windowTitle(), "Пользователь успешно зарегистрирован");
     QDialog::accept();
 }
 
 void RegistrationDialog::on_authorisationButton_clicked()
 {
-    QDialog::close();
+    QDialog::accept();
 }

@@ -5,6 +5,10 @@
 #include "ticketsbook.h"
 #include "usersbook.h"
 
+#include "addflightdialog.h"
+#include "menucashierdialog.h"
+#include "menudialog.h"
+
 #include <QDialog>
 
 namespace Ui {
@@ -30,6 +34,9 @@ private:
     UsersBook *mUsersbook;
     FlightsBook *mFlightsbook;
     TicketsBook *mTicketsbook;
+    AddFlightDialog *mAddFlightDialog;
+    MenuCashierDialog *mMenuCashierDialog;
+    MenuDialog *mMenuDialog;
 };
 
 #endif // MAINDIALOG_H

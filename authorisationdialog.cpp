@@ -1,7 +1,5 @@
 #include "authorisationdialog.h"
 #include "ui_authorisationdialog.h"
-#include "registrationdialog.h"
-#include "maindialog.h"
 
 #include <QFile>
 
@@ -95,11 +93,11 @@ AuthorisationDialog::~AuthorisationDialog()
 
 void AuthorisationDialog::on_registrationButton_clicked()
 {
-    RegistrationDialog signUpDialog(this, mUsersbook);
-    signUpDialog.setModal(true);
+    mRegistrationDialog = new RegistrationDialog(this, mUsersbook);
     this->hide();
-    signUpDialog.exec();
-    this->show();
+    connect(mRegistrationDialog, SIGNAL(accepted()), this, SLOT(slotShow()));
+    connect(mRegistrationDialog, SIGNAL(rejected()), this, SLOT(slotShow()));
+    mRegistrationDialog->open();
 }
 
 void AuthorisationDialog::on_authorisationButton_clicked()
@@ -112,12 +110,19 @@ void AuthorisationDialog::on_authorisationButton_clicked()
         {
             mCurUser = (*mUsersbook)[i];
             mCurUser->setDateLogin(QDate::currentDate());
-            MainDialog window(this, mUsersbook, mFlightsbook, mTicketsbook, mCurUser);
+            mMainDialog = new MainDialog(this, mUsersbook, mFlightsbook, mTicketsbook, mCurUser);
             this->hide();
-            window.exec();
-            this->show();
+            connect(mMainDialog, SIGNAL(accepted()), this, SLOT(slotShow()));
+            connect(mMainDialog, SIGNAL(rejected()), this, SLOT(slotShow()));
+            mMainDialog->open();
             return;
         }
     }
     ui->errorLabel->setText(tr("Пользователь с такими данными не зарегистрирован"));
 }
+
+void AuthorisationDialog::slotShow()
+{
+    this->show();
+}
+

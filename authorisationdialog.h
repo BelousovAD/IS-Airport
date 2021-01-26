@@ -5,6 +5,9 @@
 #include "ticketsbook.h"
 #include "usersbook.h"
 
+#include "maindialog.h"
+#include "registrationdialog.h"
+
 #include <QDialog>
 
 namespace Ui {
@@ -24,12 +27,16 @@ private slots:
 
     void on_authorisationButton_clicked();
 
+    void slotShow();
+
 private:
     Ui::AuthorisationDialog *ui;
     UsersBook *mUsersbook;
     FlightsBook *mFlightsbook;
     TicketsBook *mTicketsbook;
     User *mCurUser;
+    RegistrationDialog *mRegistrationDialog;
+    MainDialog *mMainDialog;
 };
 
 #endif // AUTHORISATIONDIALOG_H

@@ -3,7 +3,7 @@
 
 #include <QDataStream>
 #include <QString>
-#include <QTime>
+#include <QDateTime>
 
 class Flight
 {
@@ -24,14 +24,14 @@ public:
     const QString &getArrivalPoint() const;
     //! Устанавливает пункт назначения.
     void setArrivalPoint(const QString &arrivalPoint);
-    //! Возвращает время вылета.
-    const QTime &getDepartureTime() const;
-    //! Устанавливает время вылета.
-    void setDepartureTime(const QTime &departureTime);
-    //! Возвращает время прибытия.
-    const QTime &getArrivalTime() const;
-    //! Устанавливает время прибытия.
-    void setArrivalTime(const QTime &arrivalTime);
+    //! Возвращает дату и время вылета.
+    const QDateTime &getDepartureDateTime() const;
+    //! Устанавливает дату и время вылета.
+    void setDepartureDateTime(const QDateTime &departureDateTime);
+    //! Возвращает дату и время прибытия.
+    const QDateTime &getArrivalDateTime() const;
+    //! Устанавливает дату и время прибытия.
+    void setArrivalDateTime(const QDateTime &arrivalDateTime);
     //! Возвращает марка самолёта.
     const QString &getMark() const;
     //! Устанавливает марка самолёта.
@@ -56,9 +56,9 @@ private:
     //! Пункт назначения
     QString mArrivalPoint;
     //! Время вылета
-    QTime mDepartureTime;
+    QDateTime mDepartureDateTime;
     //! Время прибытия
-    QTime mArrivalTime;
+    QDateTime mArrivalDateTime;
     //! Марка самолёта
     QString mMark;
     //! Число мест
