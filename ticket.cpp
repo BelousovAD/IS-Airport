@@ -38,12 +38,32 @@ void Ticket::setPassengerLogin(const QString &passengerLogin)
     mPassengerLogin = passengerLogin;
 }
 
+const QDate &Ticket::getDepartureDate() const
+{
+    return mDepartureDate;
+}
+
+void Ticket::setDepartureDate(const QDate &departureDate)
+{
+    mDepartureDate = departureDate;
+}
+
+const QDate &Ticket::getArrivalDate() const
+{
+    return mArrivalDate;
+}
+
+void Ticket::setArrivalDate(const QDate &arrivalDate)
+{
+    mArrivalDate = arrivalDate;
+}
+
 void Ticket::save(QDataStream &ost) const
 {
-    ost << mNumber << mFlightNumber << mPassengerLogin;
+    ost << mNumber << mFlightNumber << mPassengerLogin << mDepartureDate << mArrivalDate;
 }
 
 void Ticket::load(QDataStream &ist)
 {
-    ist >> mNumber >> mFlightNumber >> mPassengerLogin;
+    ist >> mNumber >> mFlightNumber >> mPassengerLogin >> mDepartureDate >> mArrivalDate;
 }

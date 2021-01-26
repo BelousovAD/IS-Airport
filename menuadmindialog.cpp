@@ -49,12 +49,12 @@ void MenuAdminDialog::on_addButton_clicked()
 void MenuAdminDialog::on_delButton_clicked()
 {
     int currentRow = ui->usersTableWidget->currentRow();
-    if (currentRow != -1) {
+    if (currentRow != -1 && (ui->usersTableWidget->item(currentRow, 1))->text() != "Администратор") {
         (*mUsersbook).erase(currentRow);
         ui->usersTableWidget->removeRow(currentRow);
     }
     else {
-        QMessageBox::warning(this, windowTitle(), "Не выбран ни один пользователь");
+        QMessageBox::warning(this, windowTitle(), "Не выбран ни один пользователь или выбран администратор");
     }
 }
 

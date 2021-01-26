@@ -23,7 +23,7 @@ TicketsListDialog::TicketsListDialog(QWidget *parent, User *mCurUser,
                 ++j;
             }
             Flight flight = *(*mFlightsbook)[j];
-            QTableWidgetItem *item_departureDate = new QTableWidgetItem(flight.getDepartureDateTime().date().toString("dd.MM.yyyy"));
+            QTableWidgetItem *item_departureDate = new QTableWidgetItem(ticket.getDepartureDate().toString("dd.MM.yyyy"));
             QTableWidgetItem *item_arrivalPoint = new QTableWidgetItem(flight.getArrivalPoint());
             ui->ticketsTableWidget->insertRow(i);
             ui->ticketsTableWidget->setItem(i, 0, item_numberFlight);

@@ -24,17 +24,17 @@ public:
     const QString &getArrivalPoint() const;
     //! Устанавливает пункт назначения.
     void setArrivalPoint(const QString &arrivalPoint);
-    //! Возвращает дату и время вылета.
-    const QDateTime &getDepartureDateTime() const;
-    //! Устанавливает дату и время вылета.
-    void setDepartureDateTime(const QDateTime &departureDateTime);
-    //! Возвращает дату и время прибытия.
-    const QDateTime &getArrivalDateTime() const;
-    //! Устанавливает дату и время прибытия.
-    void setArrivalDateTime(const QDateTime &arrivalDateTime);
-    //! Возвращает марка самолёта.
+    //! Возвращает время вылета.
+    const QTime &getDepartureTime() const;
+    //! Устанавливает время вылета.
+    void setDepartureTime(const QTime &departureTime);
+    //! Возвращает время прибытия.
+    const QTime &getArrivalTime() const;
+    //! Устанавливает время прибытия.
+    void setArrivalTime(const QTime &arrivalTime);
+    //! Возвращает марку самолёта.
     const QString &getMark() const;
-    //! Устанавливает марка самолёта.
+    //! Устанавливает марку самолёта.
     void setMark(const QString &mark);
     //! Возвращает число мест.
     const int &getNumberSeats() const;
@@ -56,9 +56,9 @@ private:
     //! Пункт назначения
     QString mArrivalPoint;
     //! Время вылета
-    QDateTime mDepartureDateTime;
+    QTime mDepartureTime;
     //! Время прибытия
-    QDateTime mArrivalDateTime;
+    QTime mArrivalTime;
     //! Марка самолёта
     QString mMark;
     //! Число мест

@@ -31,22 +31,6 @@ protected:
     QVector<T*> mCollection;
 };
 
-//! Реализация оператора << для вывода Notebook в QDataStream.
-template<class T>
-inline QDataStream &operator<<(QDataStream &ost, const Book<T> &book)
-{
-    book.save(ost);
-    return ost;
-}
-
-//! Реализация оператора >> для ввода Notebook из QDataStream.
-template<class T>
-inline QDataStream &operator>>(QDataStream &ist, Book<T> &book)
-{
-    book.load(ist);
-    return ist;
-}
-
 template class Book<User>;
 template class Book<Flight>;
 template class Book<Ticket>;

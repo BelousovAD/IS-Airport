@@ -9,8 +9,10 @@ TicketDialog::TicketDialog(QWidget *parent, Ticket *ticket,
     ui->setupUi(this);
     ui->titleLine->setValue(ticket->getNumber());
     ui->arrivalPointLine->setText(flight->getArrivalPoint());
-    ui->dateAndTimeArrivalLine->setDateTime(flight->getArrivalDateTime());
-    ui->dateAndTimeDepartureLine->setDateTime(flight->getDepartureDateTime());
+    ui->dateAndTimeArrivalLine->setDate(ticket->getArrivalDate());
+    ui->dateAndTimeArrivalLine->setTime(flight->getArrivalTime());
+    ui->dateAndTimeDepartureLine->setDate(ticket->getDepartureDate());
+    ui->dateAndTimeDepartureLine->setTime(flight->getDepartureTime());
     ui->departurePointLine->setText(flight->getDeparturePoint());
     ui->midnameLine->setText(mCurUser->getMidname());
     ui->nameLine->setText(mCurUser->getName());
