@@ -40,10 +40,10 @@ public:
     const int &getNumberSeats() const;
     //! Устанавливает число мест.
     void setNumberSeats(const int &numberSeats);
-    //! Возвращает cписок номеров билетов.
-    const QVector<int> &getTicketNumbers() const;
-    //! Устанавливает cписок номеров билетов.
-    void setTicketNumbers(const QVector<int> &ticketNumbers);
+    //! Возвращает число билетов.
+    const int &getNumberTickets() const;
+    //! Устанавливает число билетов.
+    void setNumberTickets(const int &numberTickets);
     //! Сохраняет рейс в поток ost.
     void save(QDataStream &ost) const;
     //! Загружает рейс из потока ist.
@@ -63,8 +63,8 @@ private:
     QString mMark;
     //! Число мест
     int mNumberSeats;
-    //! Список номеров билетов
-    QVector<int> mTicketNumbers;
+    //! Число билетов
+    int mNumberTickets = 0;
 };
 
 //! Реализация оператора << для вывода Flight в QDataStream.

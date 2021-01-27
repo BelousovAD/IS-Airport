@@ -69,7 +69,6 @@ void MenuAdminDialog::on_riseButton_clicked()
         }
         else if (dynamic_cast<Cashier*>(user))
         {
-            //int row = ui->usersTableWidget->rowCount();
             Admin *admin = new Admin;
             admin->setDateLogin(user->getDateLogin());
             admin->setLogin(user->getLogin());
@@ -79,19 +78,13 @@ void MenuAdminDialog::on_riseButton_clicked()
             admin->setPassportSerial(user->getPassportSerial());
             admin->setPassword(user->getPassword());
             admin->setSurname(user->getSurname());
-            (*mUsersbook).insert(*admin);
-            (*mUsersbook).erase(currentRow);
-            ui->usersTableWidget->removeRow(currentRow);
-            QTableWidgetItem *item_login = new QTableWidgetItem(admin->getLogin());
+            (*mUsersbook).edit(currentRow, *admin);
             QTableWidgetItem *item_root = new QTableWidgetItem("Администратор");
-            ui->usersTableWidget->insertRow(currentRow);
-            ui->usersTableWidget->setItem(currentRow, 0, item_login);
             ui->usersTableWidget->setItem(currentRow, 1, item_root);
 
         }
         else if (dynamic_cast<Passenger*>(user))
         {
-            //int row = ui->usersTableWidget->rowCount();
             Cashier *cashier = new Cashier;
             cashier->setDateLogin(user->getDateLogin());
             cashier->setLogin(user->getLogin());
@@ -101,13 +94,8 @@ void MenuAdminDialog::on_riseButton_clicked()
             cashier->setPassportSerial(user->getPassportSerial());
             cashier->setPassword(user->getPassword());
             cashier->setSurname(user->getSurname());
-            (*mUsersbook).insert(*cashier);
-            (*mUsersbook).erase(currentRow);
-            ui->usersTableWidget->removeRow(currentRow);
-            QTableWidgetItem *item_login = new QTableWidgetItem(cashier->getLogin());
+            (*mUsersbook).edit(currentRow, *cashier);
             QTableWidgetItem *item_root = new QTableWidgetItem("Кассир");
-            ui->usersTableWidget->insertRow(currentRow);
-            ui->usersTableWidget->setItem(currentRow, 0, item_login);
             ui->usersTableWidget->setItem(currentRow, 1, item_root);
         }
     }
@@ -138,7 +126,6 @@ void MenuAdminDialog::on_lowerButton_clicked()
         }
         else if (dynamic_cast<Cashier*>(user))
         {
-            //int row = ui->usersTableWidget->rowCount();
             Passenger *passenger = new Passenger;
             passenger->setDateLogin(user->getDateLogin());
             passenger->setLogin(user->getLogin());
@@ -148,19 +135,13 @@ void MenuAdminDialog::on_lowerButton_clicked()
             passenger->setPassportSerial(user->getPassportSerial());
             passenger->setPassword(user->getPassword());
             passenger->setSurname(user->getSurname());
-            (*mUsersbook).insert(*passenger);
-            (*mUsersbook).erase(currentRow);
-            ui->usersTableWidget->removeRow(currentRow);
-            QTableWidgetItem *item_login = new QTableWidgetItem(passenger->getLogin());
+            (*mUsersbook).edit(currentRow, *passenger);
             QTableWidgetItem *item_root = new QTableWidgetItem("Пассажир");
-            ui->usersTableWidget->insertRow(currentRow);
-            ui->usersTableWidget->setItem(currentRow, 0, item_login);
             ui->usersTableWidget->setItem(currentRow, 1, item_root);
 
         }
         else if (dynamic_cast<Admin*>(user))
         {
-            //int row = ui->usersTableWidget->rowCount();
             Cashier *cashier = new Cashier;
             cashier->setDateLogin(user->getDateLogin());
             cashier->setLogin(user->getLogin());
@@ -170,13 +151,8 @@ void MenuAdminDialog::on_lowerButton_clicked()
             cashier->setPassportSerial(user->getPassportSerial());
             cashier->setPassword(user->getPassword());
             cashier->setSurname(user->getSurname());
-            (*mUsersbook).insert(*cashier);
-            (*mUsersbook).erase(currentRow);
-            ui->usersTableWidget->removeRow(currentRow);
-            QTableWidgetItem *item_login = new QTableWidgetItem(cashier->getLogin());
+            (*mUsersbook).edit(currentRow, *cashier);
             QTableWidgetItem *item_root = new QTableWidgetItem("Кассир");
-            ui->usersTableWidget->insertRow(currentRow);
-            ui->usersTableWidget->setItem(currentRow, 0, item_login);
             ui->usersTableWidget->setItem(currentRow, 1, item_root);
         }
     }

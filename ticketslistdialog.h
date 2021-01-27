@@ -22,7 +22,7 @@ public:
     ~TicketsListDialog();
 
 private slots:
-    void on_ticketsTableWidget_cellActivated(int row, int column);
+    void on_ticketsTableWidget_cellDoubleClicked(int row, int column);
 
 private:
     Ui::TicketsListDialog *ui;

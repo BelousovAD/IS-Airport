@@ -78,26 +78,26 @@ void Flight::setNumberSeats(const int &numberSeats)
     mNumberSeats = numberSeats;
 }
 
-const QVector<int> &Flight::getTicketNumbers() const
+const int &Flight::getNumberTickets() const
 {
-    return mTicketNumbers;
+    return mNumberTickets;
 }
 
-void Flight::setTicketNumbers(const QVector<int> &ticketNumbers)
+void Flight::setNumberTickets(const int &numberTickets)
 {
-    mTicketNumbers = ticketNumbers;
+    mNumberTickets = numberTickets;
 }
 
 void Flight::save(QDataStream &ost) const
 {
     ost << mNumber << mDeparturePoint << mArrivalPoint
         << mDepartureTime << mArrivalTime << mMark
-        << mNumberSeats << mTicketNumbers;
+        << mNumberSeats << mNumberTickets;
 }
 
 void Flight::load(QDataStream &ist)
 {
     ist >> mNumber >> mDeparturePoint >> mArrivalPoint
         >> mDepartureTime >> mArrivalTime >> mMark
-        >> mNumberSeats >> mTicketNumbers;
+        >> mNumberSeats >> mNumberTickets;
 }

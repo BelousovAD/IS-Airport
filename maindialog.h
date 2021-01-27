@@ -38,6 +38,10 @@ private slots:
 
     void on_editButton_clicked();
 
+    void on_flightTableWidget_cellDoubleClicked(int row, int column);
+
+    void refreshNumberEmptySeats();
+
 private:
     Ui::MainDialog *ui;
     User *mCurUser;
