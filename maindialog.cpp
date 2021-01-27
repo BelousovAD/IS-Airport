@@ -15,11 +15,15 @@ MainDialog::MainDialog(QWidget *parent, UsersBook *mUsersbook,
     this->mFlightsbook = mFlightsbook;
     this->mTicketsbook = mTicketsbook;
     this->mCurUser = mCurUser;
-    if (dynamic_cast<Admin*>(mCurUser) == nullptr)
+    if (!dynamic_cast<Admin*>(mCurUser))
     {
         ui->addButton->hide();
         ui->delButton->hide();
         ui->editButton->hide();
+    }
+    if (!dynamic_cast<Cashier*>(mCurUser))
+    {
+        disconnect(ui->flightTableWidget, SIGNAL(cellDoubleClicked(int, int)), this, SLOT(on_flightTableWidget_cellDoubleClicked(int, int)));
     }
     // Конструирование таблицы
     for (int i = 0; i < (*mFlightsbook).size(); ++i)
@@ -32,8 +36,7 @@ MainDialog::MainDialog(QWidget *parent, UsersBook *mUsersbook,
         QTableWidgetItem *item_arrivalTime = new QTableWidgetItem(flight.getArrivalTime().toString("hh:mm"));
         QTableWidgetItem *item_mark = new QTableWidgetItem(flight.getMark());
         QTableWidgetItem *item_numberSeats = new QTableWidgetItem(QString::number(flight.getNumberSeats()));
-        QTableWidgetItem *item_numberFreeSeats = new QTableWidgetItem(QString::number(flight.getNumberSeats() - flight.getTicketNumbers().size()));
-
+        QTableWidgetItem *item_numberFreeSeats = new QTableWidgetItem(QString::number(flight.getNumberSeats() - flight.getNumberTickets()));
         ui->flightTableWidget->insertRow(i);
         ui->flightTableWidget->setItem(i, 0, item_number);
         ui->flightTableWidget->setItem(i, 1, item_departurePoint);
@@ -77,7 +80,7 @@ void MainDialog::addFlightToTable()
     QTableWidgetItem *item_arrivalTime = new QTableWidgetItem(flight->getArrivalTime().toString("hh:mm"));
     QTableWidgetItem *item_mark = new QTableWidgetItem(flight->getMark());
     QTableWidgetItem *item_numberSeats = new QTableWidgetItem(QString::number(flight->getNumberSeats()));
-    QTableWidgetItem *item_numberEmptySeats = new QTableWidgetItem(QString::number(flight->getNumberSeats() - flight->getTicketNumbers().size()));
+    QTableWidgetItem *item_numberEmptySeats = new QTableWidgetItem(QString::number(flight->getNumberSeats() - flight->getNumberTickets()));
     ui->flightTableWidget->insertRow(row);
     ui->flightTableWidget->setItem(row, 0, item_number);
     ui->flightTableWidget->setItem(row, 1, item_departurePoint);
@@ -101,7 +104,7 @@ void MainDialog::editFlightAtTable()
     QTableWidgetItem *item_arrivalTime = new QTableWidgetItem(flight->getArrivalTime().toString("hh:mm"));
     QTableWidgetItem *item_mark = new QTableWidgetItem(flight->getMark());
     QTableWidgetItem *item_numberSeats = new QTableWidgetItem(QString::number(flight->getNumberSeats()));
-    QTableWidgetItem *item_numberEmptySeats = new QTableWidgetItem(QString::number(flight->getNumberSeats() - flight->getTicketNumbers().size()));
+    QTableWidgetItem *item_numberEmptySeats = new QTableWidgetItem(QString::number(flight->getNumberSeats() - flight->getNumberTickets()));
     ui->flightTableWidget->insertRow(row);
     ui->flightTableWidget->setItem(row, 0, item_number);
     ui->flightTableWidget->setItem(row, 1, item_departurePoint);
@@ -117,11 +120,18 @@ void MainDialog::on_delButton_clicked()
 {
     int currentRow = ui->flightTableWidget->currentRow();
     if (currentRow != -1) {
+        for (int i = 0; i < (*mTicketsbook).size(); ++i)
+        {
+            if ((*mFlightsbook)[currentRow]->getNumber() == (*mTicketsbook)[i]->getFlightNumber())
+            {
+                (*mTicketsbook).erase(i);
+            }
+        }
         (*mFlightsbook).erase(currentRow);
         ui->flightTableWidget->removeRow(currentRow);
     }
     else {
-        QMessageBox::warning(this, windowTitle(), "Не выбран ни один пользователь");
+        QMessageBox::warning(this, windowTitle(), "Не выбран ни один рейс");
     }
 }
 
@@ -131,4 +141,21 @@ void MainDialog::on_editButton_clicked()
     mAddFlightDialog->setWindowTitle("Редактирование рейса");
     connect(mAddFlightDialog, SIGNAL(accepted()), this, SLOT(editFlightAtTable()));
     mAddFlightDialog->open();
+}
+
+void MainDialog::on_flightTableWidget_cellDoubleClicked(int row, int column)
+{
+    Q_UNUSED(column);
+    mMenuCashierDialog = new MenuCashierDialog(this, (*mFlightsbook)[row], mUsersbook, mTicketsbook);
+    connect(mMenuCashierDialog, SIGNAL(accepted()), this, SLOT(refreshNumberEmptySeats()));
+    connect(mMenuCashierDialog, SIGNAL(rejected()), this, SLOT(refreshNumberEmptySeats()));
+    mMenuCashierDialog->open();
+}
+
+void MainDialog::refreshNumberEmptySeats()
+{
+    int currentRow = ui->flightTableWidget->currentRow();
+    Flight *flight = (*mFlightsbook)[currentRow];
+    QTableWidgetItem *item_numberEmptySeats = new QTableWidgetItem(QString::number(flight->getNumberSeats() - flight->getNumberTickets()));
+    ui->flightTableWidget->setItem(currentRow, 7, item_numberEmptySeats);
 }

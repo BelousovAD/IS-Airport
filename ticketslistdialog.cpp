@@ -16,7 +16,7 @@ TicketsListDialog::TicketsListDialog(QWidget *parent, User *mCurUser,
         if (mCurUser->getLogin() == (*mTicketsbook)[i]->getPassengerLogin())
         {
             Ticket ticket = *(*mTicketsbook)[i];
-            QTableWidgetItem *item_numberFlight = new QTableWidgetItem(ticket.getFlightNumber());
+            QTableWidgetItem *item_numberFlight = new QTableWidgetItem(QString::number(ticket.getFlightNumber()));
             int j = 0;
             while (ticket.getFlightNumber() != (*mFlightbook)[j]->getNumber())
             {
@@ -39,7 +39,7 @@ TicketsListDialog::~TicketsListDialog()
     delete ui;
 }
 
-void TicketsListDialog::on_ticketsTableWidget_cellActivated(int row, int column)
+void TicketsListDialog::on_ticketsTableWidget_cellDoubleClicked(int row, int column)
 {
     Q_UNUSED(column);
     Ticket *ticket = (*mTicketsbook)[tickets[row].first];

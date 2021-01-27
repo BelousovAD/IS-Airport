@@ -60,9 +60,9 @@ protected:
     //! Отчество пользователя
     QString mMidname;
     //! Серия паспорта пользователя
-    int mPassportSerial;
+    int mPassportSerial = 0;
     //! Номер паспорта пользователя
-    int mPassportNumber;
+    int mPassportNumber = 0;
     //! Дата последнего входа пользователя
     QDate mDateLogin = QDate::currentDate();
 };
