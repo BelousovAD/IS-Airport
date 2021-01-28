@@ -2,6 +2,7 @@
 #define ADDFLIGHTDIALOG_H
 
 #include "flightsbook.h"
+#include "validators.h"
 
 #include <QDialog>
 

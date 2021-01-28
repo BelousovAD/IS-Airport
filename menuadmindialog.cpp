@@ -32,6 +32,7 @@ MenuAdminDialog::MenuAdminDialog(QWidget *parent, User *mCurUser, UsersBook *mUs
         ui->usersTableWidget->setItem(i, 0, item_login);
         ui->usersTableWidget->setItem(i, 1, item_root);
     }
+    ui->usersTableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 MenuAdminDialog::~MenuAdminDialog()
@@ -113,6 +114,7 @@ void MenuAdminDialog::addUserToTable()
     ui->usersTableWidget->insertRow(row);
     ui->usersTableWidget->setItem(row, 0, item_login);
     ui->usersTableWidget->setItem(row, 1, item_root);
+    ui->usersTableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 void MenuAdminDialog::on_lowerButton_clicked()
@@ -138,7 +140,6 @@ void MenuAdminDialog::on_lowerButton_clicked()
             (*mUsersbook).edit(currentRow, *passenger);
             QTableWidgetItem *item_root = new QTableWidgetItem("Пассажир");
             ui->usersTableWidget->setItem(currentRow, 1, item_root);
-
         }
         else if (dynamic_cast<Admin*>(user))
         {

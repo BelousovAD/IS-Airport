@@ -2,6 +2,7 @@
 #define REGISTRATIONDIALOG_H
 
 #include "usersbook.h"
+#include "validators.h"
 
 #include <QDialog>
 

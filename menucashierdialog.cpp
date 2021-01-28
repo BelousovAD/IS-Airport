@@ -27,8 +27,8 @@ MenuCashierDialog::MenuCashierDialog(QWidget *parent, Flight *mCurFlight,
             QTableWidgetItem *item_surname = new QTableWidgetItem(user->getSurname());
             QTableWidgetItem *item_name = new QTableWidgetItem(user->getName());
             QTableWidgetItem *item_midname = new QTableWidgetItem(user->getMidname());
-            QTableWidgetItem *item_passportSerial = new QTableWidgetItem(QString::number(user->getPassportSerial()));
-            QTableWidgetItem *item_passportNumber = new QTableWidgetItem(QString::number(user->getPassportNumber()));
+            QTableWidgetItem *item_passportSerial = new QTableWidgetItem(user->getPassportSerial());
+            QTableWidgetItem *item_passportNumber = new QTableWidgetItem(user->getPassportNumber());
             int row = ui->passengersTableWidget->rowCount();
             ui->passengersTableWidget->insertRow(row);
             ui->passengersTableWidget->setItem(row, 0, item_surname);
@@ -39,6 +39,7 @@ MenuCashierDialog::MenuCashierDialog(QWidget *parent, Flight *mCurFlight,
             ticketAndPassenger.push_back(QPair<int, int>(i, j));
         }
     }
+    ui->passengersTableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 MenuCashierDialog::~MenuCashierDialog()
@@ -53,14 +54,15 @@ void MenuCashierDialog::addPassengerToTable()
     QTableWidgetItem *item_surname = new QTableWidgetItem(user->getSurname());
     QTableWidgetItem *item_name = new QTableWidgetItem(user->getName());
     QTableWidgetItem *item_midname = new QTableWidgetItem(user->getMidname());
-    QTableWidgetItem *item_passportSerial = new QTableWidgetItem(QString::number(user->getPassportSerial()));
-    QTableWidgetItem *item_passportNumber = new QTableWidgetItem(QString::number(user->getPassportNumber()));
+    QTableWidgetItem *item_passportSerial = new QTableWidgetItem(user->getPassportSerial());
+    QTableWidgetItem *item_passportNumber = new QTableWidgetItem(user->getPassportNumber());
     ui->passengersTableWidget->insertRow(row);
     ui->passengersTableWidget->setItem(row, 0, item_surname);
     ui->passengersTableWidget->setItem(row, 1, item_name);
     ui->passengersTableWidget->setItem(row, 2, item_midname);
     ui->passengersTableWidget->setItem(row, 3, item_passportSerial);
     ui->passengersTableWidget->setItem(row, 4, item_passportNumber);
+    ui->passengersTableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 void MenuCashierDialog::on_buyButton_clicked()

@@ -58,22 +58,22 @@ void User::setMidname(const QString &midname)
     mMidname = midname;
 }
 
-const int &User::getPassportSerial() const
+const QString &User::getPassportSerial() const
 {
     return mPassportSerial;
 }
 
-void User::setPassportSerial(const int &passportSerial)
+void User::setPassportSerial(const QString &passportSerial)
 {
     mPassportSerial = passportSerial;
 }
 
-const int &User::getPassportNumber() const
+const QString &User::getPassportNumber() const
 {
     return mPassportNumber;
 }
 
-void User::setPassportNumber(const int &passportNumber)
+void User::setPassportNumber(const QString &passportNumber)
 {
     mPassportNumber = passportNumber;
 }

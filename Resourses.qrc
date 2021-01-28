@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>MyPalette.xml</file>
+    </qresource>
+</RCC>

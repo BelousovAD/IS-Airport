@@ -102,27 +102,42 @@ void AuthorisationDialog::on_registrationButton_clicked()
 
 void AuthorisationDialog::on_authorisationButton_clicked()
 {
-    //if ()
-    for (int i = 0; i < (*mUsersbook).size(); ++i)
+    QString login = ui->loginLine->text();
+    int loginCursorPos = ui->loginLine->cursorPosition();
+    QString password = ui->passwordLine->text();
+    int passwordCursorPos = ui->passwordLine->cursorPosition();
+    if (Validators::loginValidator.validate(login, loginCursorPos) != QValidator::Acceptable)
     {
-        if ((*mUsersbook)[i]->getLogin() == ui->loginLine->text()
-                && (*mUsersbook)[i]->getPassword() == ui->passwordLine->text())
-        {
-            mCurUser = (*mUsersbook)[i];
-            mCurUser->setDateLogin(QDate::currentDate());
-            mMainDialog = new MainDialog(this, mUsersbook, mFlightsbook, mTicketsbook, mCurUser);
-            this->hide();
-            connect(mMainDialog, SIGNAL(accepted()), this, SLOT(slotShow()));
-            connect(mMainDialog, SIGNAL(rejected()), this, SLOT(slotShow()));
-            mMainDialog->open();
-            return;
-        }
+        ui->errorLabel->setText("Логин не соответствует требованиям\n(5-20 символов без пробела)");
+        return;
     }
-    ui->errorLabel->setText(tr("Пользователь с такими данными не зарегистрирован"));
+    else if (Validators::passwordValidator.validate(password, passwordCursorPos) != QValidator::Acceptable)
+    {
+        ui->errorLabel->setText("Пароль не соответствует требованиям\n(5-20 символов без пробела)");
+        return;
+    }
+    else
+    {
+        for (int i = 0; i < (*mUsersbook).size(); ++i)
+        {
+            if ((*mUsersbook)[i]->getLogin() == ui->loginLine->text()
+                    && (*mUsersbook)[i]->getPassword() == ui->passwordLine->text())
+            {
+                mCurUser = (*mUsersbook)[i];
+                mCurUser->setDateLogin(QDate::currentDate());
+                mMainDialog = new MainDialog(this, mUsersbook, mFlightsbook, mTicketsbook, mCurUser);
+                this->hide();
+                connect(mMainDialog, SIGNAL(accepted()), this, SLOT(slotShow()));
+                connect(mMainDialog, SIGNAL(rejected()), this, SLOT(slotShow()));
+                mMainDialog->open();
+                return;
+            }
+        }
+        ui->errorLabel->setText(tr("Пользователь с такими данными не зарегистрирован"));
+    }
 }
 
 void AuthorisationDialog::slotShow()
 {
     this->show();
 }
-

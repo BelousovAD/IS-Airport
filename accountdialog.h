@@ -1,6 +1,7 @@
 #ifndef ACCOUNTDIALOG_H
 #define ACCOUNTDIALOG_H
 #include "usersbook.h"
+#include "validators.h"
 
 #include <QDialog>
 
