@@ -7,8 +7,10 @@
 
 #include "maindialog.h"
 #include "registrationdialog.h"
+#include "validators.h"
 
 #include <QDialog>
+#include <QLineEdit>
 
 namespace Ui {
 class AuthorisationDialog;

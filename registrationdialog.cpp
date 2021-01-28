@@ -24,26 +24,42 @@ RegistrationDialog::~RegistrationDialog()
 
 void RegistrationDialog::on_registrationButton_clicked()
 {
-    //if()
-    if (ui->passwordLine->text() != ui->repeatPasswordLine->text())
+    QString login = ui->loginLine->text();
+    int loginCursorPos = ui->loginLine->cursorPosition();
+    QString password = ui->passwordLine->text();
+    int passwordCursorPos = ui->passwordLine->cursorPosition();
+    if (Validators::loginValidator.validate(login, loginCursorPos) != QValidator::Acceptable)
+    {
+        ui->errorLabel->setText("Логин не соответствует требованиям\n(5-20 символов без пробела)");
+        return;
+    }
+    else if (Validators::passwordValidator.validate(password, passwordCursorPos) != QValidator::Acceptable)
+    {
+        ui->errorLabel->setText("Пароль не соответствует требованиям\n(5-20 символов без пробела)");
+        return;
+    }
+    else if (ui->passwordLine->text() != ui->repeatPasswordLine->text())
     {
         ui->errorLabel->setText(tr("Пароль не совпадает с повтором пароля"));
         return;
     }
-    for (int i = 0; i < (*mUsersbook).size(); ++i)
+    else
     {
-        if ((*mUsersbook)[i]->getLogin() == ui->loginLine->text())
+        for (int i = 0; i < (*mUsersbook).size(); ++i)
         {
-            ui->errorLabel->setText(tr("Пользователь с такими данными уже зарегистрирован"));
-            return;
+            if ((*mUsersbook)[i]->getLogin() == ui->loginLine->text())
+            {
+                ui->errorLabel->setText(tr("Пользователь с такими данными уже зарегистрирован"));
+                return;
+            }
         }
+        User* user = new Passenger();
+        user->setLogin(ui->loginLine->text());
+        user->setPassword(ui->passwordLine->text());
+        (*mUsersbook).insert(*user);
+        QMessageBox::warning(this, windowTitle(), "Пользователь успешно зарегистрирован");
+        QDialog::accept();
     }
-    User* user = new Passenger();
-    user->setLogin(ui->loginLine->text());
-    user->setPassword(ui->passwordLine->text());
-    (*mUsersbook).insert(*user);
-    QMessageBox::warning(this, windowTitle(), "Пользователь успешно зарегистрирован");
-    QDialog::accept();
 }
 
 void RegistrationDialog::on_authorisationButton_clicked()

@@ -53,7 +53,8 @@ HEADERS += \
     ticketsbook.h \
     ticketslistdialog.h \
     user.h \
-    usersbook.h
+    usersbook.h \
+    validators.h
 
 FORMS += \
     accountdialog.ui \

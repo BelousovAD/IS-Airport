@@ -17,8 +17,8 @@ TicketDialog::TicketDialog(QWidget *parent, Ticket *ticket,
     ui->midnameLine->setText(mCurUser->getMidname());
     ui->nameLine->setText(mCurUser->getName());
     ui->numberLine->setValue(flight->getNumber());
-    ui->passportNumberLine->setText(QString::number(mCurUser->getPassportNumber()));
-    ui->passportSerialLine->setText(QString::number(mCurUser->getPassportSerial()));
+    ui->passportNumberLine->setText(mCurUser->getPassportNumber());
+    ui->passportSerialLine->setText(mCurUser->getPassportSerial());
     ui->surnameLine->setText(mCurUser->getSurname());
 }
 

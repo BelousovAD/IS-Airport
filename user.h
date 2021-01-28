@@ -33,13 +33,13 @@ public:
     //! Устанавливает отчество пользователя.
     void setMidname(const QString &midname);
     //! Возвращает серию паспорта пользователя.
-    const int &getPassportSerial() const;
+    const QString &getPassportSerial() const;
     //! Устанавливает серию паспорта пользователя.
-    void setPassportSerial(const int &passportSerial);
+    void setPassportSerial(const QString &passportSerial);
     //! Возвращает номер паспорта пользователя.
-    const int &getPassportNumber() const;
+    const QString &getPassportNumber() const;
     //! Устанавливает номер паспорта пользователя.
-    void setPassportNumber(const int &passportSerial);
+    void setPassportNumber(const QString &passportSerial);
     //! Возвращает дату последнего входа пользователя.
     const QDate &getDateLogin() const;
     //! Устанавливает дату последнего входа пользователя.
@@ -60,9 +60,9 @@ protected:
     //! Отчество пользователя
     QString mMidname;
     //! Серия паспорта пользователя
-    int mPassportSerial = 0;
+    QString mPassportSerial = "0000";
     //! Номер паспорта пользователя
-    int mPassportNumber = 0;
+    QString mPassportNumber = "000000";
     //! Дата последнего входа пользователя
     QDate mDateLogin = QDate::currentDate();
 };
