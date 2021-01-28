@@ -14,7 +14,7 @@ namespace Validators
     const QRegExpValidator passportNumberValidator(QRegExp("^\\d{6,6}$"));
     const QRegExpValidator departurePointValidator(QRegExp("^[гспд]\.\\s[А-Я]([а-я]|-)+$"));
     const QRegExpValidator arrivalPointValidator(QRegExp("^[гспд]\.\\s[А-Я]([а-я]|-)+$"));
-    const QRegExpValidator markValidator(QRegExp("^\\w+$"));
+    const QRegExpValidator markValidator(QRegExp("^\\S+$"));
 }
 
 #endif // VALIDATORS_H

@@ -38,17 +38,17 @@ void AddFlightDialog::on_acceptButton_clicked()
     int markCursorPos = ui->markLine->cursorPosition();
     if (Validators::departurePointValidator.validate(departurePoint, departurePointCursorPos) != QValidator::Acceptable)
     {
-        ui->errorLabel->setText("Логин не соответствует требованиям\n(5-20 символов без пробела)");
+        ui->errorLabel->setText("Пункт отправления не соответствует требованиям\n(г. Название или п. Название или\nc. Название или д. Название)");
         return;
     }
     else if (Validators::arrivalPointValidator.validate(arrivalPoint, arrivalPointCursorPos) != QValidator::Acceptable)
     {
-        ui->errorLabel->setText("Пароль не соответствует требованиям\n(5-20 символов без пробела)");
+        ui->errorLabel->setText("Пункт назначения не соответствует требованиям\n(г. Название или п. Название или\nc. Название или д. Название)");
         return;
     }
     else if (Validators::markValidator.validate(mark, markCursorPos) != QValidator::Acceptable)
     {
-        ui->errorLabel->setText("Отчество не соответствует требованиям\n(Либо начинается с заглавной буквы и содержит\nне менее одной прописной буквы,\nлибо отсутствует)");
+        ui->errorLabel->setText("Марка не соответствует требованиям");
         return;
     }
     else

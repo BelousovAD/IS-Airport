@@ -39,6 +39,7 @@ MenuCashierDialog::MenuCashierDialog(QWidget *parent, Flight *mCurFlight,
             ticketAndPassenger.push_back(QPair<int, int>(i, j));
         }
     }
+    ui->passengersTableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 MenuCashierDialog::~MenuCashierDialog()
@@ -61,6 +62,7 @@ void MenuCashierDialog::addPassengerToTable()
     ui->passengersTableWidget->setItem(row, 2, item_midname);
     ui->passengersTableWidget->setItem(row, 3, item_passportSerial);
     ui->passengersTableWidget->setItem(row, 4, item_passportNumber);
+    ui->passengersTableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 void MenuCashierDialog::on_buyButton_clicked()

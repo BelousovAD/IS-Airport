@@ -47,6 +47,7 @@ MainDialog::MainDialog(QWidget *parent, UsersBook *mUsersbook,
         ui->flightTableWidget->setItem(i, 6, item_numberSeats);
         ui->flightTableWidget->setItem(i, 7, item_numberFreeSeats);
     }
+    ui->flightTableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 MainDialog::~MainDialog()

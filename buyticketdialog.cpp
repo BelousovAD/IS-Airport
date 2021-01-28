@@ -59,12 +59,12 @@ void BuyTicketDialog::on_acceptButton_clicked()
     }
     else if (Validators::passportNumberValidator.validate(passportNumber, passportNumberCursorPos) != QValidator::Acceptable)
     {
-        ui->errorLabel->setText("Пароль не соответствует требованиям\n(6 цифер)");
+        ui->errorLabel->setText("Номер паспорта не соответствует требованиям\n(6 цифер)");
         return;
     }
     else if (Validators::passportSerialValidator.validate(passportSerial, passportSerialCursorPos) != QValidator::Acceptable)
     {
-        ui->errorLabel->setText("Пароль не соответствует требованиям\n(4 цифры)");
+        ui->errorLabel->setText("Серия паспорта не соответствует требованиям\n(4 цифры)");
         return;
     }
     else if (Validators::surnameValidator.validate(surname, surnameCursorPos) != QValidator::Acceptable)
