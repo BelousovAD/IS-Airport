@@ -29,8 +29,6 @@ private slots:
 
     void on_authorisationButton_clicked();
 
-    void slotShow();
-
 private:
     Ui::AuthorisationDialog *ui;
     UsersBook *mUsersbook;

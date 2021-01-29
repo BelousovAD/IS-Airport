@@ -39,7 +39,7 @@ MenuCashierDialog::MenuCashierDialog(QWidget *parent, Flight *mCurFlight,
             ticketAndPassenger.push_back(QPair<int, int>(i, j));
         }
     }
-    ui->passengersTableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+    ui->passengersTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 MenuCashierDialog::~MenuCashierDialog()

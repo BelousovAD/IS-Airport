@@ -94,9 +94,6 @@ AuthorisationDialog::~AuthorisationDialog()
 void AuthorisationDialog::on_registrationButton_clicked()
 {
     mRegistrationDialog = new RegistrationDialog(this, mUsersbook);
-    this->hide();
-    connect(mRegistrationDialog, SIGNAL(accepted()), this, SLOT(slotShow()));
-    connect(mRegistrationDialog, SIGNAL(rejected()), this, SLOT(slotShow()));
     mRegistrationDialog->open();
 }
 
@@ -126,18 +123,11 @@ void AuthorisationDialog::on_authorisationButton_clicked()
                 mCurUser = (*mUsersbook)[i];
                 mCurUser->setDateLogin(QDate::currentDate());
                 mMainDialog = new MainDialog(this, mUsersbook, mFlightsbook, mTicketsbook, mCurUser);
-                this->hide();
-                connect(mMainDialog, SIGNAL(accepted()), this, SLOT(slotShow()));
-                connect(mMainDialog, SIGNAL(rejected()), this, SLOT(slotShow()));
-                mMainDialog->open();
+                mMainDialog->setModal(true);
+                mMainDialog->showMaximized();
                 return;
             }
         }
         ui->errorLabel->setText(tr("Пользователь с такими данными не зарегистрирован"));
     }
-}
-
-void AuthorisationDialog::slotShow()
-{
-    this->show();
 }
