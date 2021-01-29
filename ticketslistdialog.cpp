@@ -32,7 +32,7 @@ TicketsListDialog::TicketsListDialog(QWidget *parent, User *mCurUser,
             tickets.push_back(QPair<int, int>(i, j));
         }
     }
-    ui->ticketsTableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+    ui->ticketsTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 TicketsListDialog::~TicketsListDialog()

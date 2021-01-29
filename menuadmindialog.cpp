@@ -32,7 +32,7 @@ MenuAdminDialog::MenuAdminDialog(QWidget *parent, User *mCurUser, UsersBook *mUs
         ui->usersTableWidget->setItem(i, 0, item_login);
         ui->usersTableWidget->setItem(i, 1, item_root);
     }
-    ui->usersTableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+    ui->usersTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 MenuAdminDialog::~MenuAdminDialog()
