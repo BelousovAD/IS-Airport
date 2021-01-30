@@ -74,7 +74,7 @@ void BuyTicketDialog::on_acceptButton_clicked()
     }
     else if (ui->dateDepartureLine->date() < QDate::currentDate())
     {
-        ui->errorLabel->setText("Дата вылета не соответствует требованиям\n(Должна быть больше текущей даты)");
+        ui->errorLabel->setText("Дата вылета не соответствует требованиям\n(Должна быть больше или равна текущей дате)");
         return;
     }
     else if (ui->dateDepartureLine->date() == QDate::currentDate() && mCurFlight->getDepartureTime() <= QTime::currentTime().addSecs(1800))
